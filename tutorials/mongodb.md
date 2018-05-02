@@ -73,3 +73,34 @@ Use the following command in order to restart mongodb:
 ```
 sudo service mongodb restart
 ```
+## Create database
+
+In this tutorial, we will create a database to store our application logs.
+Use the following command to create a new database named Logging. “Use” command will create a new database if it doesn't exist, otherwise it will return the existing database.
+```
+use Logging
+```
+To check the currently selected database, use the command db
+```
+>db
+```
+To check the databases list, use the command show dbs
+```
+>show dbs
+```
+## Drop Database
+
+Use the following command to delete the selected database 
+```
+db.dropDatabase()
+```
+## Create Collection
+
+Now let’s create a collection named logs within the logging database using the command below:
+```
+>db.createCollection("logs")
+```
+You can check the created collection by using the command show collections.
+```
+>show collections
+```

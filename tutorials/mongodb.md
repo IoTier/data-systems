@@ -183,3 +183,34 @@ Greater : 		{<key>:{$gt:<value>}}
 Greater Than Equals: 	{<key>:{$gte:<value>}}
 Not Equals: 		{<key>:{$ne:<value>}}
 ```
+
+Use the following command to get the top 10 documents having the biggest content size:
+```
+db.logs.find().sort({"Content_size":-1}).limit(10).pretty()
+```
+Please note that, if you don't specify the sorting preference, then sort() method will display the documents in ascending order.
+
+## Aggregation
+
+Aggregations are used to process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. 
+
+Use the following command to get the count of logs and total content size of each IP address:
+```
+db.logs.aggregate([{$group : {_id : "$Ip_address", count: {$sum : 1}, total_size: {$sum : "$Content_size"}}}])
+```
+
+Use the following command to get the count of logs for each endpoint:
+```
+db.logs.aggregate([{$group : {_id : "$Endpoint", count: {$sum : 1}}}])
+```
+Use the following command to get the count and maximum content size of each method:
+
+```
+db.logs.aggregate([{$group : {_id : "$Method", count: {$sum : 1}, max_size: {$max : "$Content_size"}}}])
+```
+Use the following command to get the count of each response code
+```
+db.logs.aggregate([{$group : {_id : "$Response_code", count: {$sum : 1}}}])
+```
+
+

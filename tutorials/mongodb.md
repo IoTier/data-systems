@@ -104,3 +104,21 @@ You can check the created collection by using the command show collections.
 ```
 >show collections
 ```
+## CRUD operations
+
+### Insert document
+
+Use the following command to insert a document in the logs collection
+```
+Db.logs.insert(
+{
+	Ip_address: "::ffff:54.221.205.80",
+	Client_id:"client1",
+	User_id:"user1",
+	Date_time:new Date("2018-03-1T23:07:43"),
+	Method:"POST",
+	Endpoint:"/v1/data/publish/ISS/position",
+	Protocol:"HTTP/1.1",
+   Response_code: 200,
+   Content_size:4
+})

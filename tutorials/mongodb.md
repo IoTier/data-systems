@@ -1,13 +1,18 @@
 # Working with MongoDB
+
 ## Installation
-## Installing MongoDB community edition on windows
+
+### Installing MongoDB community edition on windows
 
 MongoDB Community Edition requires Windows Server 2008 R2, Windows 7, or later. 
+
 Download the latest release of MongoDB from https://www.mongodb.org/downloads. The name of the extracted file should be mongodb-win32-i386-[version] or mongodb-win32-x86_64-[version]
+
 Double-click the .msi downloaded file, a set of screens will appear to guide you through the installation process. Choose “Custom” installation to specify an installation directory e.g. d:\mongo
 #### Run MongoDB
 
 MongoDB requires a data directory to store all data. The default location for the MongoDB data directory is c:\data\db. Create this folder by running the following command in a Command Prompt:
+
 ```
 md data\db
 

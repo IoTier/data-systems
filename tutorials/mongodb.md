@@ -122,3 +122,35 @@ Db.logs.insert(
    Response_code: 200,
    Content_size:4
 })
+```
+### Insert bulk documents
+
+Use the following command in order to insert 2 documents to the logs collection:
+
+```
+db.logs.insert([
+{
+	Ip_address:"::ffff:54.243.49.1",
+	Client_id:"client1",
+	User_id:"user1",
+	Date_time:new Date("2018-05-3T11:08:11"),
+	Method:"POST",
+	Endpoint: "/v1/data/write/klima/Temperature",
+	Protocol:"HTTP/1.1",
+	Response_code: 200,
+	Content_size:4
+},
+{
+	Ip_address:"::ffff:54.221.205.80",
+	Client_id:"client2",
+	User_id:"user2",
+	Date_time:new Date("2018-03-2T11:00:21"),
+	Method:"GET",
+	Endpoint: "/v1/data/read/appliance/command?limit=1&source=raw",
+	Protocol:"HTTP/1.1",
+	Response_code: 404,
+	Content_size:5
+}]
+)
+```
+

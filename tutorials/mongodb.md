@@ -15,7 +15,6 @@ MongoDB requires a data directory to store all data. The default location for th
 
 ```
 md data\db
-
 ```
 In order to install the MongoDB at a different location, you need to specify an alternate path for \data\db by setting the path dbpath in mongod.exe as following (Supposing that the mongodb installation folder is D:\mongo)
 
@@ -23,12 +22,13 @@ In order to install the MongoDB at a different location, you need to specify an 
 C:\>d:
 D:\>cd "mongo\Mongodb\bin"
 D:\mongo\Mongodb\bin>mongod.exe --dbpath "d:\mongo\data"
-
 ```
 Now to run the MongoDB, you need to open another command prompt and run the following command:
+
 ```
 D:\mongo\Mongodb\bin>mongo.exe
 ```
+
 ### Installing mongodb on Ubunto
 
 Run the following command to import the MongoDB public GPG key

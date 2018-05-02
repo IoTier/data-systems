@@ -176,10 +176,10 @@ db.logs.find(
 To query the document on the basis of some condition, you can use following operations:
 
 ```
-Equality: {<key>:<value>}
-Less Than: key>:{$lt:<value>}}
-Less Than Equals: key>:{$lte:<value>}}
-Greater : {<key>:{$gt:<value>}}
-Greater Than Equals: key>:{$gte:<value>}}
-Not Equals: {<key>:{$ne:<value>}}
+Equality: 		{<key>:<value>}
+Less Than: 		{<key>:{$lt:<value>}}
+Less Than Equals: 	{<key>:{$lte:<value>}}
+Greater : 		{<key>:{$gt:<value>}}
+Greater Than Equals: 	{<key>:{$gte:<value>}}
+Not Equals: 		{<key>:{$ne:<value>}}
 ```

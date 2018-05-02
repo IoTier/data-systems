@@ -104,7 +104,7 @@ You can check the created collection by using the command show collections.
 ```
 >show collections
 ```
-## CRUD operations
+## Data manipulation
 
 ### Insert document
 

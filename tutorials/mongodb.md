@@ -153,4 +153,33 @@ db.logs.insert([
 }]
 )
 ```
+### Query document
 
+Use the following command to get all the documents in a given collection:
+```
+db.logs.find().pretty()
+```
+Use the following command to get all documents with response code 200:
+```
+db.logs.find({"Response_code":200}).pretty()
+```
+Use the following command to get all the documents where response code = 200 and Client_id = client1:
+```
+db.logs.find(
+   {
+      $and: [
+         {Response_code : 200}, {Client_id:“client1”}
+      ]
+   }
+).pretty()
+```
+To query the document on the basis of some condition, you can use following operations:
+
+```
+Equality: {<key>:<value>}
+Less Than: key>:{$lt:<value>}}
+Less Than Equals: key>:{$lte:<value>}}
+Greater : {<key>:{$gt:<value>}}
+Greater Than Equals: key>:{$gte:<value>}}
+Not Equals: {<key>:{$ne:<value>}}
+```

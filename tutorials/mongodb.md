@@ -29,7 +29,7 @@ Now to run the MongoDB, you need to open another command prompt and run the foll
 D:\mongo\Mongodb\bin>mongo.exe
 ```
 
-### Installing mongodb on Ubunto
+### Installing mongodb on Ubuntu
 
 Run the following command to import the MongoDB public GPG key
 ```

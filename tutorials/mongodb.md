@@ -197,7 +197,7 @@ Indexes are special data structures, that store a small portion of the data set 
 
 When we create a collection in MongoDB then MongoDB creates a unique Index on _id Field, this is called the Default index.
 
-MongoDB support namy types of indexes like Single Filed Index, Compound Index, Multikey Index, Text Index, Geospatial Index and Hashed Index.
+MongoDB supports multiple types of indexes like Single Filed Index, Compound Index, Multikey Index, Text Index, Geospatial Index and Hashed Index.
 
 In the following exercise, we will learn how to create a Single Field Index and a Compounnd Index.
 

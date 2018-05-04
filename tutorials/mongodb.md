@@ -190,6 +190,25 @@ db.logs.find().sort({"Content_size":-1}).limit(10).pretty()
 ```
 Please note that, if you don't specify the sorting preference, then sort() method will display the documents in ascending order.
 
+The following command retrieves the logs where method equals either GET or POST
+```
+db.logs.find({Method: {$in: ["GET", "POST"]}})
+```
+
+The following command retrieves the logs where method equals GET and Content_size is greater than or equal 4
+
+```
+db.logs.find({Method:"GET", Content_size: {$gte:4}})
+```
+
+The following command retrieves the logs where Method equals "POST" and either Content_size = 4 or Client_id starts with "Client"
+```
+db.logs.find( {
+     Method: "GET",
+     $or: [ { Content_size: 4 }, { Client_id: /^client/ } ]
+} )
+```
+
 ## Indexing
 Indexes support the efficient resolution of queries. Without indexes, MongoDB must scan every document of a collection to select those documents that match the query statement. This scan is highly inefficient and requires MongoDB to process a large volume of data.
 

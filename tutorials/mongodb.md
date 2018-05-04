@@ -225,6 +225,13 @@ db.logs.find({"Response_code": 404}).explain(“executionStats”)
 ```
 After Index, MongoDB will not do a complete collectoin scan, the “totalDocsExamined” will show now the number of the logs where Response_code is 404 instead of the total number of documents
 
+### Create a compount Index
+
+Now suppose that we want to search based on both Client_id and Method. In that case we will have to apply index on Client_id and Method, this is called Compound Index:
+
+```
+db.Logging({"Client_id":1,"Method": 1})
+```
 
 ## Aggregation
 

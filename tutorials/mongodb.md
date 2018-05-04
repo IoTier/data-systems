@@ -213,4 +213,69 @@ Use the following command to get the count of each response code
 db.logs.aggregate([{$group : {_id : "$Response_code", count: {$sum : 1}}}])
 ```
 
+## Replication
+
+In this exercise, we will use the same host machine to create a Replica Set with 2 nodes. For this purpose, we will run 2 mongod instances. One instance acts as PRIMARY and the other instance acts as SECONDARY.
+Shutdown already running MongoDB server.
+Now start the MongoDB server by specifying the replSet option as following, this will start a mongod instance with the name rs0, on port 27017.
+``` 
+D:\mongo\Mongodb\bin>mongod --port 27017 --dbpath "d:\mongo\data" --replSet rs0
+```
+
+### start another mongod instance 
+In order to run another mongod instance on the same machine, we should use a different port and data path. In this exercise we will use port 27018 and path …
+Run the following command to run a new mongod instance
+```
+D:\mongo\Mongodb\bin> mongod --port 27018 --dbpath "d:\mongo\data2" --replSet rs0
+```
+Note that this instance is also started with same Replica Set
+
+### Start Replication
+
+After starting the 2 mongod instances, open another command prompt  and run the command rs.initiate() to initiate a new replica set.
+
+```
+D:\mongo\Mongodb\bin>mongo.exe
+rs0:PRIMARY>rs.initiate()
+```
+You can check the status using rs.status() command.
+
+### Add the second mongodb instance  to the Replica Set
+To add the second MongoDB instance that we already started, run the following command in the command prompt that we opened in the previous step: 
+
+```
+rs0:PRIMARY>rs.add(“localhost:27018”)
+```
+If you get a response { “ok” : 1 }, this means that the addition of the mongod instance to the replica set is successful.
+
+You can check the status by running the following command:
+```
+rs0:PRIMARY>rs.status();
+```
+### Check Replication
+Now we will check if the replication is happening correctly. We will insert a document to the primary instance:
+```
+rs0:PRIMARY>use Logging
+rs0:PRIMARY>db.logs.insert(
+{
+	Ip_address: “::ffff:54.221.200.10”,
+	Client_id:”client5“,
+	User_id:”user5”,
+	Date_time:new Date(“2018-03-03T11:00:00”),
+	Method:”GET”,
+	Endpoint: “/v1/data/read/temp”,
+	Protocol:”HTTP/1.1”,
+Response_code: 200,
+Content_size:4
+}
+)
+````
+Now let’s check in the SECONDARY instance, if this document is replicated.
+Run another command prompt and run the following commands:
+ ```
+D:\mongo\Mongodb\bin>mongo --port 27018
+rs0:SECONDARY> rs.slaveOk()
+rs0:SECONDARY>use Logging
+rs0:SECONDARY>db.logs.find()
+```
 

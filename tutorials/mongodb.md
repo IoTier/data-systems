@@ -225,8 +225,8 @@ D:\mongo\Mongodb\bin>mongod --port 27017 --dbpath "d:\mongo\data" --replSet rs0
 ```
 this will start a mongod instance on port 27017. --replset rs0 means that we are setting up a set of nodes to replicate, and the name given to this Replica set is rs0.
 
-### start another mongod instance 
-In order to run another mongod instance on the same machine, we should use a different port and data path. In this exercise we will use port 27018 and path …
+### Start another mongod instance 
+In order to run another mongod instance on the same machine, we should use a different port and data path. In this exercise we will use port 27018 and path d:\mongo\data2
 Run the following command to run a new mongod instance
 ```
 D:\mongo\Mongodb\bin> mongod --port 27018 --dbpath "d:\mongo\data2" --replSet rs0
@@ -256,25 +256,25 @@ You can check the status by running the following command:
 rs0:PRIMARY>rs.status();
 ```
 ### Check Replication
-Now we will check if the replication is happening correctly. We will insert a document to the primary instance:
+Now we will check if the replication is working correctly. We will insert a document to the primary instance:
 ```
 rs0:PRIMARY>use Logging
 rs0:PRIMARY>db.logs.insert(
 {
-	Ip_address: “::ffff:54.221.200.10”,
-	Client_id:”client5“,
-	User_id:”user5”,
-	Date_time:new Date(“2018-03-03T11:00:00”),
-	Method:”GET”,
-	Endpoint: “/v1/data/read/temp”,
-	Protocol:”HTTP/1.1”,
+	Ip_address: "::ffff:54.221.200.10",
+	Client_id:"client5",
+	User_id:"user5",
+	Date_time:new Date("2018-03-03T11:00:00"),
+	Method:"GET",
+	Endpoint: "/v1/data/read/temp",
+	Protocol:"HTTP/1.1",
 Response_code: 200,
 Content_size:4
 }
 )
 ````
 Now let’s check in the SECONDARY instance, if this document is replicated.
-Run another command prompt and run the following commands:
+Run another command prompt and run the following commands, this should dipslay all the documents in the logs collection:
  ```
 D:\mongo\Mongodb\bin>mongo --port 27018
 rs0:SECONDARY> rs.slaveOk()

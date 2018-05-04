@@ -216,11 +216,14 @@ db.logs.aggregate([{$group : {_id : "$Response_code", count: {$sum : 1}}}])
 ## Replication
 
 In this exercise, we will use the same host machine to create a Replica Set with 2 nodes. For this purpose, we will run 2 mongod instances. One instance acts as PRIMARY and the other instance acts as SECONDARY.
+
 Shutdown already running MongoDB server.
-Now start the MongoDB server by specifying the replSet option as following, this will start a mongod instance with the name rs0, on port 27017.
+
+Now start the MongoDB server by specifying the --replSet option as per the below:
 ``` 
 D:\mongo\Mongodb\bin>mongod --port 27017 --dbpath "d:\mongo\data" --replSet rs0
 ```
+this will start a mongod instance on port 27017. --replset rs0 means that we are setting up a set of nodes to replicate, and the name given to this Replica set is rs0.
 
 ### start another mongod instance 
 In order to run another mongod instance on the same machine, we should use a different port and data path. In this exercise we will use port 27018 and path …

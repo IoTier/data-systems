@@ -190,6 +190,42 @@ db.logs.find().sort({"Content_size":-1}).limit(10).pretty()
 ```
 Please note that, if you don't specify the sorting preference, then sort() method will display the documents in ascending order.
 
+## Indexing
+Indexes support the efficient resolution of queries. Without indexes, MongoDB must scan every document of a collection to select those documents that match the query statement. This scan is highly inefficient and requires MongoDB to process a large volume of data.
+
+Indexes are special data structures, that store a small portion of the data set in an easy-to-traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field as specified in the index.
+
+When we create a collection in MongoDB then MongoDB creates a unique Index on _id Field, this is called the Default index.
+
+MongoDB support namy types of indexes like Single Filed Index, Compound Index, Multikey Index, Text Index, Geospatial Index and Hashed Index.
+
+In the following exercise, we will learn how to create a Single Field Index and a Compounnd Index.
+
+### Create Single Field index
+
+Let’s run the following query: 
+
+```
+db.logs.find({"Response_code": 404}).explain(“executionStats”)
+```
+Note that “totalDocsExamined” value is equal to the number of all the documents in the collection. This means that MongoDB scanned all the documents in order to return the result.
+
+Let’s add an index on “Response_code”
+
+```
+db.logs.createIndex({"Response_code":1})
+
+```
+To create index in descending order you need to use -1.
+
+Now let’s run the same query again
+
+```
+db.logs.find({"Response_code": 404}).explain(“executionStats”)
+```
+After Index, MongoDB will not do a complete collectoin scan, the “totalDocsExamined” will show now the number of the logs where Response_code is 404 instead of the total number of documents
+
+
 ## Aggregation
 
 Aggregations are used to process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. 
